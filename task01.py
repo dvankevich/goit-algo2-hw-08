@@ -4,13 +4,13 @@ import time
 class Node:
     def __init__(self, key, value):
         self.data = (key, value)
-        self.next = None
-        self.prev = None
+        self.next: Node | None = None
+        self.prev: Node | None = None
 
 class DoublyLinkedList:
     def __init__(self):
-        self.head = None
-        self.tail = None
+        self.head: Node | None = None
+        self.tail: Node | None = None
 
     def push(self, key, value):
         new_node = Node(key, value)
@@ -38,7 +38,8 @@ class DoublyLinkedList:
         if node != self.head:
             self.remove(node)
             node.next = self.head
-            self.head.prev = node
+            if self.head:
+                self.head.prev = node
             self.head = node
 
     def remove_last(self):
